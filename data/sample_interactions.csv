@@ -1,0 +1,14 @@
+user_id,item_id,rating,timestamp,interaction_type,session_id
+1,101,4.5,1640995200,rating,session_001
+1,102,3.8,1640995260,view,session_001
+2,103,5.0,1640995300,purchase,session_002
+2,104,4.2,1640995350,rating,session_002
+3,101,4.8,1640995400,rating,session_003
+3,105,3.5,1640995450,view,session_003
+4,106,4.1,1640995500,rating,session_004
+5,107,4.7,1640995550,purchase,session_005
+6,108,3.9,1640995600,rating,session_006
+7,109,4.3,1640995650,view,session_007
+8,110,4.6,1640995700,rating,session_008
+9,101,4.0,1640995750,rating,session_009
+10,111,3.7,1640995800,view,session_010
