@@ -1,0 +1,64 @@
+# Prometheus configuration for Real-Time Recommendation Engine
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'recommendation-api'
+    static_configs:
+      - targets: ['localhost:8000']
+    metrics_path: '/metrics'
+    scrape_interval: 5s
+    
+  - job_name: 'recommendation-api-metrics'
+    static_configs:
+      - targets: ['localhost:8001']
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # MLflow metrics (if available)
+  - job_name: 'mlflow'
+    static_configs:
+      - targets: ['localhost:5000']
+    metrics_path: '/metrics'
+    scrape_interval: 30s
+    scrape_timeout: 10s
+
+  # Redis metrics (via redis_exporter if available)
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['localhost:9121']
+    scrape_interval: 15s
+
+  # PostgreSQL metrics (via postgres_exporter if available)
+  - job_name: 'postgres'
+    static_configs:
+      - targets: ['localhost:9187']
+    scrape_interval: 15s
+
+  # Kafka metrics (via kafka_exporter if available)
+  - job_name: 'kafka'
+    static_configs:
+      - targets: ['localhost:9308']
+    scrape_interval: 15s
+
+# Alerting rules for recommendation system
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          # - alertmanager:9093
+
+# Example alerting rules (would be in separate files)
+# rule_files:
+#   - "recommendation_alerts.yml"
