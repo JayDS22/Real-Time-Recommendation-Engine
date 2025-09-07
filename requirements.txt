@@ -1,0 +1,70 @@
+# Core dependencies
+pyspark==3.4.1
+delta-spark==2.4.0
+mlflow==2.8.1
+kafka-python==2.0.2
+fastapi==0.104.1
+uvicorn==0.24.0
+
+# Data processing
+pandas==2.1.3
+numpy==1.24.3
+scipy==1.11.4
+scikit-learn==1.3.2
+
+# ML libraries
+implicit==0.7.2
+surprise==1.1.3
+lightfm==1.17
+
+# Database
+sqlalchemy==2.0.23
+psycopg2-binary==2.9.9
+redis==5.0.1
+
+# API and serialization
+pydantic==2.5.0
+requests==2.31.0
+httpx==0.25.2
+
+# Monitoring and logging
+prometheus-client==0.19.0
+structlog==23.2.0
+loguru==0.7.2
+
+# Configuration
+pyyaml==6.0.1
+python-dotenv==1.0.0
+hydra-core==1.3.2
+
+# Testing
+pytest==7.4.3
+pytest-asyncio==0.21.1
+pytest-cov==4.1.0
+hypothesis==6.88.1
+
+# Async
+asyncio==3.4.3
+aiofiles==23.2.1
+aioredis==2.0.1
+
+# Utilities
+click==8.1.7
+tqdm==4.66.1
+joblib==1.3.2
+
+# Jupyter for development
+jupyter==1.0.0
+ipykernel==6.26.0
+matplotlib==3.8.2
+seaborn==0.13.0
+plotly==5.17.0
+
+# Development tools
+black==23.11.0
+flake8==6.1.0
+isort==5.12.0
+pre-commit==3.5.0
+
+# Docker support
+gunicorn==21.2.0
