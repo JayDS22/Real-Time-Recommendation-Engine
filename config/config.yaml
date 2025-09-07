@@ -1,0 +1,135 @@
+# Configuration for Real-Time Recommendation Engine
+
+# Model parameters
+models:
+  svd:
+    factors: 100
+    learning_rate: 0.01
+    regularization: 0.1
+    epochs: 100
+    min_rating: 1
+    max_rating: 5
+    
+  nmf:
+    factors: 50
+    alpha: 0.0001
+    l1_ratio: 0.0
+    max_iter: 200
+    random_state: 42
+    
+  collaborative_filtering:
+    min_interactions: 5
+    top_k: 20
+    similarity_threshold: 0.1
+
+# Feature engineering
+features:
+  dimensionality_reduction:
+    target_variance: 0.95
+    max_components: 1000
+  
+  feature_selection:
+    method: "mutual_info"
+    k_best: 100
+    
+  normalization:
+    method: "minmax"
+    feature_range: [0, 1]
+
+# Streaming configuration
+streaming:
+  kafka:
+    bootstrap_servers: "localhost:9092"
+    topics:
+      user_interactions: "user_interactions"
+      item_updates: "item_updates"
+      recommendations: "recommendations"
+    
+  spark:
+    app_name: "RecommendationEngine"
+    batch_interval: "10 seconds"
+    checkpoint_location: "/tmp/spark-checkpoint"
+    
+  delta_lake:
+    warehouse_path: "/tmp/delta-warehouse"
+    
+# API configuration
+api:
+  host: "0.0.0.0"
+  port: 8000
+  workers: 4
+  max_recommendations: 20
+  cache_ttl: 300  # 5 minutes
+  rate_limit: 1000  # requests per minute
+
+# Database configuration
+database:
+  postgres:
+    host: "localhost"
+    port: 5432
+    database: "recommendations"
+    username: "postgres"
+    password: "postgres"
+    
+  redis:
+    host: "localhost"
+    port: 6379
+    db: 0
+    password: null
+
+# MLflow configuration
+mlflow:
+  tracking_uri: "http://localhost:5000"
+  experiment_name: "recommendation_engine"
+  artifact_location: "/tmp/mlflow-artifacts"
+
+# Metrics and evaluation
+evaluation:
+  metrics:
+    - "ndcg"
+    - "map"
+    - "hit_rate" 
+    - "coverage"
+    - "rmse"
+    - "precision"
+    - "recall"
+  
+  k_values: [5, 10, 20]
+  test_size: 0.2
+  random_state: 42
+
+# A/B Testing
+ab_testing:
+  default_traffic_split: 0.5
+  min_sample_size: 1000
+  significance_level: 0.05
+  statistical_power: 0.95
+  min_effect_size: 0.02
+  max_experiment_duration: 30  # days
+
+# Monitoring
+monitoring:
+  prometheus:
+    port: 8001
+    metrics_path: "/metrics"
+  
+  logging:
+    level: "INFO"
+    format: "json"
+    
+# Performance tuning
+performance:
+  spark:
+    executor_memory: "2g"
+    executor_cores: 2
+    driver_memory: "1g"
+    max_result_size: "1g"
+    
+  api:
+    max_workers: 10
+    timeout: 30
+    
+  cache:
+    user_profiles_ttl: 3600  # 1 hour
+    item_features_ttl: 7200  # 2 hours
+    recommendations_ttl: 1800  # 30 minutes
