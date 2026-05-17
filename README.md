@@ -2,7 +2,7 @@
 
 A high-performance collaborative filtering recommendation system built with PySpark, Delta Lake, MLflow, and Kafka, achieving sub-100ms latency with advanced matrix factorization techniques.
 
-## 🚀 Key Features
+## Key Features
 
 - **Ultra-low latency**: <100ms response time
 - **High accuracy metrics**: NDCG@10: 0.78, MAP@10: 0.73, Hit Rate@20: 0.91
@@ -11,7 +11,7 @@ A high-performance collaborative filtering recommendation system built with PySp
 - **Optimized feature engineering**: 67% dimensionality reduction with R²: 0.89
 - **A/B testing framework**: Statistical power: 0.95, 23% CTR lift (p-value: 0.001)
 
-## 📊 Performance Metrics
+## Performance Metrics
 
 | Metric | Value |
 |--------|-------|
@@ -27,22 +27,19 @@ A high-performance collaborative filtering recommendation system built with PySp
 | CTR Lift | 23% |
 | Statistical Power | 0.95 |
 
-## 🏗️ Architecture
+## Architecture
 
-```
-┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-│   Kafka     │───▶│   Spark     │───▶│ Delta Lake  │
-│  Streaming  │    │ Processing  │    │   Storage   │
-└─────────────┘    └─────────────┘    └─────────────┘
-       │                   │                   │
-       ▼                   ▼                   ▼
-┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-│ Real-time   │    │   MLflow    │    │    API      │
-│ Features    │    │   Models    │    │  Gateway    │
-└─────────────┘    └─────────────┘    └─────────────┘
+```mermaid
+flowchart LR
+    K[Kafka Streaming] --> S[Spark Processing] --> DL[Delta Lake Storage]
+    K --> RF[Real-time Features]
+    S --> ML[MLflow Models]
+    DL --> API[API Gateway]
+    RF --> API
+    ML --> API
 ```
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 - **Streaming**: Apache Kafka
 - **Processing**: PySpark
@@ -52,7 +49,7 @@ A high-performance collaborative filtering recommendation system built with PySp
 - **Monitoring**: Prometheus + Grafana
 - **Testing**: A/B Testing Framework
 
-## 📦 Installation
+## Installation
 
 ### Prerequisites
 
@@ -91,7 +88,7 @@ docker-compose up -d
 python scripts/init_tables.py
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Start the recommendation service
 ```bash
@@ -113,7 +110,7 @@ python src/models/train_models.py
 python src/experiments/ab_testing.py
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 recommendation-engine/
@@ -136,7 +133,7 @@ recommendation-engine/
 └── README.md
 ```
 
-## 🔧 Configuration
+## Configuration
 
 Key configuration parameters in `config/config.yaml`:
 
@@ -160,7 +157,7 @@ api:
   max_recommendations: 20
 ```
 
-## 📊 Usage Examples
+## Usage Examples
 
 ### Get Recommendations
 ```python
@@ -192,7 +189,7 @@ producer.send('user_interactions', {
 })
 ```
 
-## 🧪 Testing
+## Testing
 
 ### Run unit tests
 ```bash
@@ -209,14 +206,14 @@ pytest tests/integration/
 python src/experiments/ab_testing.py --experiment_name "new_algorithm_test"
 ```
 
-## 📈 Monitoring
+## Monitoring
 
 Access monitoring dashboards:
 - **Grafana**: http://localhost:3000
 - **MLflow**: http://localhost:5000
 - **API Metrics**: http://localhost:8000/metrics
 
-## 🔬 A/B Testing Framework
+## A/B Testing Framework
 
 The system includes a comprehensive A/B testing framework with:
 - Statistical power analysis
@@ -246,7 +243,7 @@ print(f"CTR Lift: {results['lift']:.1%}")
 print(f"P-value: {results['p_value']:.3f}")
 ```
 
-## 🚀 Deployment
+## Deployment
 
 ### Production Deployment
 ```bash
@@ -262,7 +259,7 @@ docker-compose -f docker-compose.prod.yml up -d
 kubectl apply -f k8s/
 ```
 
-## 📝 Model Details
+## Model Details
 
 ### SVD (Singular Value Decomposition)
 - **Factors**: 100
@@ -282,7 +279,7 @@ kubectl apply -f k8s/
 - Normalization: Min-max scaling
 - Prediction accuracy (R²): 0.89
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -290,18 +287,18 @@ kubectl apply -f k8s/
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Apache Spark Community
 - Delta Lake Contributors
 - MLflow Team
 - Kafka Development Team
 
-## 📞 Contact
+## Contact
 
 **Jay Guwalani**
 - Email: jguwalan@umd.edu
@@ -311,4 +308,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-⭐ **Star this repository if you find it helpful!**
+ **Star this repository if you find it helpful!**
